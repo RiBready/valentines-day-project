@@ -21,7 +21,7 @@ class ValentineApp(ctk.CTk):
 
         # Dialogue Box Frame
         self.game_frame = ctk.CTkFrame(
-            self,fg_color=DIALOGUE_BOX, border_width=4, border_color=BORDER_COLOUR, corner_radius=0
+            self,fg_color=DIALOGUE_BOX, border_width=6, border_color=BORDER_COLOUR, corner_radius=0
             )
         # Dialogue Box frame layout manager (Pack)
         self.game_frame.pack(padx=20, pady=20, fill="both", expand=True)
