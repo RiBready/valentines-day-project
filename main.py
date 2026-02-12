@@ -1,24 +1,23 @@
 import customtkinter as ctk
 
-ctk.set_appearance_mode("System")
-ctk.set_default_color_theme("blue")
+# To force light mode for pastel colours
+ctk.set_appearance_mode("Light")
 
-app = ctk.CTk()
-app.geometry("600x400")
+class ValentineApp(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        # Square window
+        self.geometry("500x500")
+        
+        # Window title
+        self.title("Important question...")
+        
+        # Setting background colour (front is back)
+        self.configure(fg_color="#faacd4")
+       
+        # No resizing to cater for custom images
+        self.resizable(False,False)
 
-counter = 0
-
-
-
-def button_function():
-    global counter
-    counter += 1
-    counter_txt = "Button Counter: "
-    print(counter_txt + str(counter))
-
-
-#Using defined button
-button = ctk.CTkButton(master=app, text="Button :O", command=button_function)
-button.place(relx=0.5, rely=0.5, anchor=ctk.CENTER)
-
-app.mainloop()
+if __name__ == "__main__":
+    app = ValentineApp()
+    app.mainloop()
