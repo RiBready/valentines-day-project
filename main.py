@@ -15,10 +15,17 @@ BTN_HOVER = "#FAFFB6"
 class ValentineApp(ctk.CTk):
     
     def say_yes(self):
-            print("She said yes!") # Dummy message for now
+            # print("She said yes!") # debug message
+            self.create_yes_page()
     
     def say_no(self):
          print("how did you get here.")
+         self.create_no_page()
+
+    def try_again(self):
+         self.clear_frame() # required or else the previous scene (no page) is shown
+         self.create_start_page()
+         
 
     def __init__(self):
         super().__init__()
@@ -40,13 +47,15 @@ class ValentineApp(ctk.CTk):
 
         self.create_start_page()
     
-    def clear_screen(self):
+    def clear_frame(self):
          # When called, it loops through each widget in the window and destroys it.
-         for widget in self.winfo_children():
+         for widget in self.game_frame.winfo_children():
               widget.destroy()
             
     def create_start_page(self):
-         # The big question
+        self.clear_frame
+        
+        # The big question
         self.label = ctk.CTkLabel(
             self.game_frame, text="Will you be my valentine?",
             font=("VCR OSD MONO", 28), text_color=TEXT_COLOUR
@@ -72,23 +81,58 @@ class ValentineApp(ctk.CTk):
         self.no_btn.place(x=290, y=384)
 
         # adding first image
-        question_path = os.path.join(os.path.dirname(__file__), 'assets/question_cat.png')
+        question_path = os.path.join(os.path.dirname(__file__), 'assets/question_cat.jpg')
         question_img = ctk.CTkImage(light_image = Image.open(question_path), size = (220, 220))
         question_label = ctk.CTkLabel(self.game_frame, text="", image = question_img)
         question_label.pack(pady=20)
         question_label.place(x=120, y = 120)
 
     def create_yes_page(self):
-         self.clear_screen()
-         # TODO: make a success frame
+         self.clear_frame()
+         
+         # Yippee!
+         self.label = ctk.CTkLabel(
+            self.game_frame, text = "Yippee!",
+            font = ("VCR OSD MONO", 28), text_color= TEXT_COLOUR
+            )
+         self.label.pack(pady = 50)
+
+         happy_path = os.path.join(os.path.dirname(__file__), 'assets/happy_cat.jpg')
+         happy_img = ctk.CTkImage(light_image = Image.open(happy_path), size = (220, 220))
+         happy_label = ctk.CTkLabel(self.game_frame, text="", image = happy_img)
+         happy_label.place(x = 120, y = 120)
+    
+         self.label = ctk.CTkLabel(
+              self.game_frame, text= "Happy Valentine's Day <3\n I love you!",
+              font=("VCR OSD MONO", 20), text_color=TEXT_COLOUR
+         )
+         self.label.place(x = 90, y = 370)
          pass
 
     def create_no_page(self):
-         self.clear_screen
-         #TODO: make sad frame
-         pass
+         self.clear_frame()
 
-        
+         # but why :(
+         self.label = ctk.CTkLabel(
+              self.game_frame, text="But why :(", 
+              font=("VCR OSD MONO", 20), text_color=TEXT_COLOUR
+         )
+         self.label.pack(pady = 50)
+
+         sad_path = os.path.join(os.path.dirname(__file__), 'assets/sad_creature.jpg')
+         sad_img = ctk.CTkImage(light_image = Image.open(sad_path), size = (220, 220))
+         sad_label = ctk.CTkLabel(self.game_frame, text="", image = sad_img)
+         sad_label.place(x = 120, y = 120)
+
+         self.try_again_btn = ctk.CTkButton(
+            self.game_frame, text= "Answer again? Please? :(", command = self.try_again,
+            font = ("VCR OSD MONO", 20), fg_color = BTN_COLOUR,
+            hover_color = BTN_HOVER, text_color = BTN_TEXT_COLOUR,
+            corner_radius = 0, width = 260, height = 50
+        )
+         self.try_again_btn.place(x=85, y=381)
+
+         pass
 
 if __name__ == "__main__":
     app = ValentineApp()
