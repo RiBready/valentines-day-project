@@ -30,7 +30,7 @@ class ValentineApp(ctk.CTk):
             self.create_yes_page()
     
     def say_no(self):
-         print("how did you get here.")
+        #  print("how did you get here.") # debug message
          self.create_no_page()
 
     def try_again(self):
@@ -42,8 +42,6 @@ class ValentineApp(ctk.CTk):
         super().__init__()
         # Square window
         self.geometry("500x500")
-        # Window title
-        self.title("Important question...")
         # Setting background colour (front is back)
         self.configure(fg_color=BG_COLOUR)
        # No resizing to cater for custom images
@@ -66,6 +64,9 @@ class ValentineApp(ctk.CTk):
     def create_start_page(self):
         self.clear_frame
         
+        # Window title - will be dynamic
+        self.title("Important question...")
+
         # The big question
         self.label = ctk.CTkLabel(
             self.game_frame, text="Will you be my valentine?",
@@ -101,6 +102,9 @@ class ValentineApp(ctk.CTk):
     def create_yes_page(self):
          self.clear_frame()
          
+         # Window title
+         self.title("Yippee!")
+
          # Yippee!
          self.label = ctk.CTkLabel(
             self.game_frame, text = "Yippee!",
@@ -122,6 +126,9 @@ class ValentineApp(ctk.CTk):
 
     def create_no_page(self):
          self.clear_frame()
+         
+         # Window title
+         self.title("I sad now :(")
 
          # but why :(
          self.label = ctk.CTkLabel(
