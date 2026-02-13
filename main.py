@@ -1,4 +1,5 @@
 import os
+import sys
 import customtkinter as ctk
 from PIL import Image
 
@@ -11,6 +12,16 @@ TEXT_COLOUR = "#FF4C4F"
 BTN_TEXT_COLOUR = "#FF9799"
 BTN_COLOUR = "#FF69B4"
 BTN_HOVER = "#FAFFB6"
+
+# asset resource path
+def resource_path(relative_path):
+    try:
+          # PyInstaller creates a temp folder and stores path in _MEIPASS:
+     base_path = sys._MEIPASS
+    except Exception:
+         base_path = os.path.abspath(".")
+         
+    return os.path.join(base_path, relative_path)
 
 class ValentineApp(ctk.CTk):
     
@@ -81,7 +92,7 @@ class ValentineApp(ctk.CTk):
         self.no_btn.place(x=290, y=384)
 
         # adding first image
-        question_path = os.path.join(os.path.dirname(__file__), 'assets/question_cat.jpg')
+        question_path = resource_path('assets/question_cat.jpg')
         question_img = ctk.CTkImage(light_image = Image.open(question_path), size = (220, 220))
         question_label = ctk.CTkLabel(self.game_frame, text="", image = question_img)
         question_label.pack(pady=20)
@@ -97,7 +108,7 @@ class ValentineApp(ctk.CTk):
             )
          self.label.pack(pady = 50)
 
-         happy_path = os.path.join(os.path.dirname(__file__), 'assets/happy_cat.jpg')
+         happy_path = resource_path('assets/happy_cat.jpg')
          happy_img = ctk.CTkImage(light_image = Image.open(happy_path), size = (220, 220))
          happy_label = ctk.CTkLabel(self.game_frame, text="", image = happy_img)
          happy_label.place(x = 120, y = 120)
@@ -119,7 +130,7 @@ class ValentineApp(ctk.CTk):
          )
          self.label.pack(pady = 50)
 
-         sad_path = os.path.join(os.path.dirname(__file__), 'assets/sad_creature.jpg')
+         sad_path = resource_path('assets/sad_creature.jpg')
          sad_img = ctk.CTkImage(light_image = Image.open(sad_path), size = (220, 220))
          sad_label = ctk.CTkLabel(self.game_frame, text="", image = sad_img)
          sad_label.place(x = 120, y = 120)
