@@ -6,6 +6,7 @@ ctk.set_appearance_mode("Light")
 BG_COLOUR = "#e0a7ff"
 DIALOGUE_BOX ="#faacd4"
 BORDER_COLOUR = "#a6e9ff"
+TEXT_COLOUR = ""
 
 class ValentineApp(ctk.CTk):
     def __init__(self):
