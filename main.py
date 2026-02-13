@@ -1,4 +1,6 @@
+import os
 import customtkinter as ctk
+from PIL import Image
 
 # -- Config! --
 ctk.set_appearance_mode("Light") # To force light mode for pastel colours
@@ -62,12 +64,19 @@ class ValentineApp(ctk.CTk):
 
         # No button
         self.no_btn = ctk.CTkButton(
-            self.game_frame, text="No :((", command=self.say_no,
-            font=("VCR OSD MONO", 20), fg_color=BTN_COLOUR,
-            hover_color=BTN_HOVER, text_color=BTN_TEXT_COLOUR,
-            corner_radius=0, width=140, height=50
+            self.game_frame, text= "No :((", command = self.say_no,
+            font = ("VCR OSD MONO", 20), fg_color = BTN_COLOUR,
+            hover_color = BTN_HOVER, text_color = BTN_TEXT_COLOUR,
+            corner_radius = 0, width = 140, height = 50
         )
         self.no_btn.place(x=290, y=384)
+
+        # adding first image
+        question_path = os.path.join(os.path.dirname(__file__), 'assets/question_cat.png')
+        question_img = ctk.CTkImage(light_image = Image.open(question_path), size = (220, 220))
+        question_label = ctk.CTkLabel(self.game_frame, text="", image = question_img)
+        question_label.pack(pady=20)
+        question_label.place(x=120, y = 120)
 
     def create_yes_page(self):
          self.clear_screen()
